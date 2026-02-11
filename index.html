@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>¿Quieres ser mi San Valentín?</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #ff69b4 0%, #ff1493 50%, #ff69b4 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 8s ease infinite;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            animation: cardSlideIn 0.6s ease-out;
+        }
+
+        @keyframes cardSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .image-container {
+            margin-bottom: 30px;
+            animation: imageScale 0.8s ease-out;
+        }
+
+        @keyframes imageScale {
+            from {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            to {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .image-frame {
+            width: 250px;
+            height: 250px;
+            margin: 0 auto;
+            padding: 12px;
+            background: white;
+            border: 12px solid white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+            overflow: hidden;
+        }
+
+        .image-frame img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 12px;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #ff1493;
+            margin: 25px 0 15px 0;
+            font-weight: 700;
+            letter-spacing: 1px;
+            animation: textFadeIn 0.8s ease-out 0.2s both;
+        }
+
+        @keyframes textFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .subtitle {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 35px;
+            animation: textFadeIn 0.8s ease-out 0.3s both;
+        }
+
+        .buttons-container {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: textFadeIn 0.8s ease-out 0.4s both;
+        }
+
+        button {
+            border: none;
+            border-radius: 15px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 15px 35px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        #btnYes {
+            background: linear-gradient(135deg, #ff1493, #ff69b4);
+            color: white;
+            padding: 15px 35px;
+            font-size: 18px;
+        }
+
+        #btnYes:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(255, 20, 147, 0.4);
+        }
+
+        #btnYes:active {
+            transform: translateY(-1px);
+        }
+
+        #btnNo {
+            background: #f0f0f0;
+            color: #666;
+            padding: 15px 35px;
+            font-size: 18px;
+        }
+
+        #btnNo:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+
+        #btnNo:active {
+            transform: translateY(0);
+        }
+
+        .celebration {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .heart {
+            position: absolute;
+            color: #ff1493;
+            font-size: 30px;
+            opacity: 0;
+            animation: heartFall 3s ease-in forwards;
+        }
+
+        @keyframes heartFall {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+                border-radius: 20px;
+            }
+
+            .image-frame {
+                width: 200px;
+                height: 200px;
+                padding: 10px;
+                border-width: 10px;
+            }
+
+            h1 {
+                font-size: 26px;
+            }
+
+            .subtitle {
+                font-size: 16px;
+            }
+
+            button {
+                padding: 12px 25px;
+                font-size: 16px;
+            }
+
+            .buttons-container {
+                gap: 10px;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .container {
+                padding: 20px;
+            }
+
+            .image-frame {
+                width: 180px;
+                height: 180px;
+                padding: 8px;
+                border-width: 8px;
+            }
+
+            h1 {
+                font-size: 22px;
+                margin: 20px 0 10px 0;
+            }
+
+            .subtitle {
+                font-size: 14px;
+                margin-bottom: 25px;
+            }
+
+            button {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
+
+            .buttons-container {
+                gap: 8px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="celebration" id="celebration"></div>
+
+    <div class="container">
+        <div class="image-container">
+            <div class="image-frame">
+                <!-- CAMBIAR LA IMAGEN AQUÍ: reemplaza "foto.jpg" con tu imagen -->
+                <img src="foto.jpg" alt="Mi amor">
+            </div>
+        </div>
+
+        <h1>💖 ¿Quieres ser mi San Valentín? 💖</h1>
+        <p class="subtitle">Prometo hacerte muy feliz 💕</p>
+
+        <div class="buttons-container">
+            <button id="btnYes">Sí ❤️</button>
+            <button id="btnNo">No</button>
+        </div>
+    </div>
+
+    <script>
+        let yesButtonSize = 1;
+
+        const btnYes = document.getElementById('btnYes');
+        const btnNo = document.getElementById('btnNo');
+        const celebration = document.getElementById('celebration');
+
+        btnNo.addEventListener('click', function() {
+            yesButtonSize += 0.3;
+            btnYes.style.transform = `scale(${yesButtonSize})`;
+            btnYes.style.fontSize = `${18 * yesButtonSize}px`;
+            btnYes.style.padding = `${15 * yesButtonSize}px ${35 * yesButtonSize}px`;
+        });
+
+        btnYes.addEventListener('click', function() {
+            showCelebration();
+            setTimeout(() => {
+                alert('¡Eres la persona más especial del mundo! 💕💖');
+            }, 1000);
+        });
+
+        function showCelebration() {
+            celebration.style.display = 'block';
+            for (let i = 0; i < 30; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.classList.add('heart');
+                    heart.textContent = '❤️';
+                    heart.style.left = Math.random() * 100 + '%';
+                    heart.style.top = '-30px';
+                    celebration.appendChild(heart);
+                }, i * 50);
+            }
+        }
+    </script>
+</body>
+</html>
